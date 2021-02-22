@@ -8,12 +8,26 @@
 (function() {
   "use strict";
   var ESCAPEKEY = 27;
+  var localizationStrings = {
+    en: {
+      collapseSidebarText: "Collapse Sidebar",
+      expandSidebarText: "Pop Out Sidebar",
+      tocJumpText: "Jump to Table of Contents",
+    },
+    nl: {
+      collapseSidebarText: "Klap inhoudsopgave in",
+      expandSidebarText: "Klap inhoudsopgave uit",
+      tocJumpText: "Ga naar inhoudsopgave",
+    },
+  };
+  var lang = document.documentElement.lang || "en";
+  var l10n = localizationStrings.hasOwnProperty(lang) ? localizationStrings[lang] : localizationStrings.en;
   var collapseSidebarText = '<span aria-hidden="true">←</span> '
-                          + '<span>Collapse Sidebar</span>';
+                          + '<span>' + l10n.collapseSidebarText + '</span>';
   var expandSidebarText   = '<span aria-hidden="true">→</span> '
-                          + '<span>Pop Out Sidebar</span>';
+                          + '<span>' + l10n.expandSidebarText + '</span>';
   var tocJumpText         = '<span aria-hidden="true">↑</span> '
-                          + '<span>Jump to Table of Contents</span>';
+                          + '<span>' + l10n.tocJumpText + '</span>';
 
   var sidebarMedia = window.matchMedia('screen and (min-width: 78em)');
   var autoToggle   = function(e){ toggleSidebar(e.matches) };
